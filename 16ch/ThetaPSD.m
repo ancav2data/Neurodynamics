@@ -11,5 +11,6 @@ function [ ThetaPeaks, DeltaTheta ] = ThetaPSD( data, L_On, L_Off, srate )
 t1=[round(L_on(1)*srate) round(L_on(2)*srate)];
 t2=[round(L_off(1)*srate) round(L_off(2)*srate)];
 
+for ii=1:16
+    [p f]=pwelch(data,[],[],[2^14],srate);
 end
-
