@@ -14,15 +14,17 @@ t2=[round(L_off(1)*srate) round(L_off(2)*srate)];
 dp=[0 2.8];
 tp=[2.8 12];
 for ii=1:16
-    [p f]=pwelch(data(t1(1):t1(2)),[],[],[2^14],srate);
+    [p f]=pwelch(data(t1(1):t1(2),ii),[],[],[2^14],srate*1.5);
     subplot(4,4,ii),plot(f,p,'k')
     ThetaPeaks(ii,1) = max(p(find(f>tp(1) & f<tp(2))));
     DeltaPeaks(ii,1) = max(p(find(f>dp(1) & f<dp(2))));
+    hold on
     
-    [p f]=pwelch(data(t2(1):t2(2)),[],[],[2^14],srate);
+    [p f]=pwelch(data(t2(1):t2(2),ii),[],[],[2^14],srate*1.5);
     subplot(4,4,ii),plot(f,p,'r')
     ThetaPeaks(ii,2) = max(p(find(f>tp(1) & f<tp(2))));
     DeltaPeaks(ii,2) = max(p(find(f>dp(1) & f<dp(2))));
+    hold off
     
     xlim([0 20])
 end
