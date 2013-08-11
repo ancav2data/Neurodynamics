@@ -1,5 +1,5 @@
-% Markus Michael Hilscher - 0727932
-% Basket.m
+% Markus Hilscher
+% Basket_cell.m
 % Model of a fast-spiking interneuron
 
 clear;
