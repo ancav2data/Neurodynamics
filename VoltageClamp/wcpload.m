@@ -46,24 +46,37 @@ end
 
 Data = fread(Fid,'int16');
 
-Data = (Data/ADCMAX)*AD;
+%Data = (Data/ADCMAX)*AD;
 
 fclose(Fid)
 
 for ii=1:numel(Header)
 Str = char(Header{ii});
 a=strfind(Str,'YG');
+
 if(not(isempty(a)))
     eval(Str)
 end;
+
+a=strfind(Str,'YO');
+if(not(isempty(a)))
+    eval(Str)
+end;
+
 end
 
 
 
 for ii=1:NC
-    dd=Data(2+((ii-1)*2):(ii-1)*2+2:end);
+    %dd=Data(2+((ii-1)*2):(ii-1)*2+2:end);
+    eval(['Offset=YO',int2str(ii-1)]);
+    Offset = Offset + NC*1024;
+    dd=Data(NC:ii:end);
     dd=reshape(dd,[length(dd)/NR,NR]);
-d(ii).Ch=dd;
+    dd=dd(Offset:end,:);
+    eval(['Gain=YG',int2str(ii-1)]);
+
+d(ii).Ch=dd*(1/(ADCMAX*Gain));
 g=length(dd);
 
 end
