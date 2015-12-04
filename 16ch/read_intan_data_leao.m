@@ -124,7 +124,7 @@ data2=data2(1:num_amps*4,:);
 data2=reshape(data2,t_count*num_amps*4,1);
 
 data2 = typecast(data2,'single');
-data2=reshape(data2,16,t_count);
+data2=reshape(data2,num_amps,t_count);
 %---------------------------------------
 
 % % Go back to the beginning of the file...

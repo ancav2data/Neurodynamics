@@ -39,6 +39,6 @@ function PlotEEGCallback(obj,  event, data,samples,ID, m, n,flag)
     axis('tight');
     title(['Channel ',int2str(RP(2))]);
     subplot(3,1,2),plot(f,p)
-    xlim([0 20]);
+    xlim([0 10]);
     subplot(3,1,3),plot(f,p)
     xlim([20 90]);
